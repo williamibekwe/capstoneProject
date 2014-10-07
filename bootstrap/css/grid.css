@@ -1,0 +1,231 @@
+body{
+  background-image: url('../images/polkalite.png');
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  min-width: 450px;
+}
+nav{
+  background-color: black;
+  border-radius: 0px !important; 
+}
+
+
+.picture{
+  background-image: url('../images/polka.jpg');
+  background-color: black;
+  overflow: hidden;
+  width: cover;
+  height: 90%;
+}
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+h4 {
+  margin-top: 25px;
+}
+
+.row {
+  margin:40px;
+}
+.row .row {
+  margin: 10px;
+}
+/*[class*="col-"] {
+  padding: 15px;
+  background-color: #eee;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86,61,124,.2);
+  box-shadow: 1px 1px 1px #888888;
+}*/
+
+hr {
+  color: black;
+  background-color: black;
+}
+
+.fixed {
+    position: fixed !important; 
+    top: 0; 
+    z-index: 1;
+}
+
+#bs-example-navbar-collapse-1{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bannertext {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35%;
+    text-align: center;
+    padding: 30px 0 30px;
+    max-width: 960px;
+    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b2000000, endColorstr=#b2000000);
+    zoom: 1;
+
+}
+
+.bannertext h1{
+  font-size: 70px;
+  line-height: 90px;
+  font-weight: 100;
+  color: white; 
+    margin: 0px;
+
+}
+
+.bannertext p{
+  font-family: 'Architects Daughter', cursive;  
+  line-height: 90px;
+  font-weight: 100;
+  color: white; 
+  margin: 0px;
+  font-size: 35px;
+
+}
+#brander{ 
+  font-size: 26px;
+  color: cyan;
+  font-weight: 100;
+}
+
+.navbar-nav{
+  float:right;
+}
+
+#size1 { 
+  font-size: 15px;
+}
+
+#size2{
+  font-size: 20px; 
+}
+
+#size3 { 
+  font-size: 30px; 
+}
+
+#resume, #about, #projects, #contact, #blogs{ 
+    border: 1px solid rgba(86,61,124,.2);
+    background-color: white;
+    margin: 20px; 
+    padding: 20px;
+}
+
+
+#resumetext, #abouttext, #projectstext, #contacttext, #blogstext{ 
+  opacity: 0;
+}
+
+.page-header{
+  margin:0px !important;
+} 
+
+h1{
+  margin: 0px;
+}
+
+#resumepage, #aboutpage, #projectpage, #contactpage, #blogpage{ 
+  min-height: 1000px;
+}
+
+#aboutclick, #projectsclick, #resumeclick, #blogsclick, #contactclick { 
+    cursor: pointer;
+}
+
+#about { 
+  margin: 20px; 
+}
+
+#resume { 
+}
+
+#skills{ 
+    text-align: justify;
+    border-left: 1px solid;
+}
+
+#experience  { 
+  padding: 10px;
+
+}
+
+#education{ 
+
+}
+
+.eduinfo{ 
+  padding-left:10px;
+}
+
+#eduimage{
+  border-right: 1px solid grey;
+
+}
+
+.edutitle{ 
+  padding: 0px;
+  margin: 0px;
+}
+
+#ucr{
+  padding-top: 20px;
+  padding-right: 150px;
+  background: url('../images/ucr.png');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: right 1px;
+}
+
+#cmu{
+  padding-top: 20px;
+  padding-right: 150px;
+  background: url('../images/cmu.png');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: right 1px;
+}
+
+#esri { 
+  padding-top: 20px;
+  padding-right: 150px;
+  background: url('../images/esri.png');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: right 1px;
+}
+#research { 
+  padding-top: 20px;
+  padding-right: 150px;
+  background: url('../images/ucr.png');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: right 1px;
+}
+
+#aspb { 
+  padding-top: 20px;
+  padding-right: 150px;
+  background: url('../images/aspb.jpg');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: right 1px;
+}
+
+#vcsa { 
+  padding-top: 20px;
+  padding-right: 150px;
+  background: url('../images/ucr.png');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-position: right 1px;
+}
+
