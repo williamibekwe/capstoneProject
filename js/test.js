@@ -14,7 +14,6 @@ require([
         InfoTemplate, SimpleFillSymbol, SimpleRenderer, 
         SimpleMarkerSymbol, ClassBreaksRenderer,
          ScaleDependentRenderer, Color,  domStyle
-        
         ) {
     map = new Map("map", {
      //   basemap: "gray",
