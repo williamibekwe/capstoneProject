@@ -157,7 +157,7 @@ require([
     var labels = new LabelLayer({ id: "labels" });
     // tell the label layer to label the countries feature layer 
     // using the field named "admin"
-    labels.addFeatureLayer(stateFeatureLayer, statesLabelRenderer, "{" + "st" + "}");
+    labels.addFeatureLayer(stateFeatureLayer, statesLabelRenderer, "{" + "NAME_1" + "}");
     // add the label layer to the map
     map.addLayer(labels);
 
