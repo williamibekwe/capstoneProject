@@ -16,14 +16,14 @@ require([
          ScaleDependentRenderer, Color,  domStyle
         ) {
     map = new Map("map", {
-        basemap: "gray",
+        //basemap: "gray",
         center: [-98.215, 38.382],
         zoom: 4,
     });
 
     /// Adding black map
-    //var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Dark_Gray_Base_Beta/MapServer");
-    //map.addLayer(basemap);
+    var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/WM_Slate_Base/MapServer");
+    map.addLayer(basemap);
 
     MyGeocoder = [{
         url: "findAddressCandidates?category=Region,Subregion,Postal",
