@@ -57,7 +57,7 @@ require([
     //map.addLayer(csv);
 
     var symbol = new SimpleFillSymbol();
-   symbol.setColor(new Color([193, 53, 53, 0.0]));
+   symbol.setColor(new Color([238, 63, 63, 0.0]));
     var statesColor = new Color("#666");
     var statesLine = new SimpleLineSymbol("solid", statesColor, 1.5);
     var statesSymbol = new SimpleFillSymbol("solid", statesLine, null);
