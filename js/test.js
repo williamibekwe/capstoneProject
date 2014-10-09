@@ -71,7 +71,7 @@ require([
             new Color([247, 34, 101, 0.9]), 
             1
           ),
-          new Color([193, 53, 53, 0.2])
+          new Color([238, 63, 63, 0.3])
         );
 
     // Add five breaks to the renderer.
