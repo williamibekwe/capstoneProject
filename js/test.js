@@ -16,14 +16,14 @@ require([
          ScaleDependentRenderer, Color,  domStyle
         ) {
     map = new Map("map", {
-        //basemap: "gray",
+        basemap: "gray",
         center: [-98.215, 38.382],
         zoom: 4,
     });
 
     /// Adding black map
-    var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/WM_Slate_Base/MapServer");
-    map.addLayer(basemap);
+    //var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/WM_Slate_Base/MapServer");
+    //map.addLayer(basemap);
 
     MyGeocoder = [{
         url: "findAddressCandidates?category=Region,Subregion,Postal",
@@ -149,7 +149,7 @@ require([
     accidentsFeatureLayer.setRenderer(renderer);
 
      // create a text symbol to define the style of labels
-    var statesLabel = new TextSymbol().setColor(new Color([255, 255, 255, 1]));
+    var statesLabel = new TextSymbol().setColor(new Color([0, 0, 0, 1]));
     statesLabel.font.setSize("10pt");
     statesLabel.font.setFamily("arial");
 
@@ -163,7 +163,7 @@ require([
 
 
     // create a text symbol to define the style of labels
-    var countyLabel = new TextSymbol().setColor(new Color([255, 255, 255, 1]));
+    var countyLabel = new TextSymbol().setColor(new Color([0, 0, 0, 1]));
     countyLabel.font.setSize("10pt");
     countyLabel.font.setFamily("arial");
 
@@ -176,7 +176,7 @@ require([
     map.addLayer(countylabels);
 
 
-   var zipLabel = new TextSymbol().setColor(new Color([255, 255, 255, 1]));
+   var zipLabel = new TextSymbol().setColor(new Color([0, 0, 0, 1]));
     zipLabel.font.setSize("10pt");
     zipLabel.font.setFamily("arial");
 
