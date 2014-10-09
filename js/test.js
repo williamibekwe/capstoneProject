@@ -33,13 +33,6 @@ require([
     geocoder = new Geocoder({
         //arcgisGeocoder: false, 
        // geocoders: MyGeocoder,
-        arcgisGeocoder: [ {
-            url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/?findAddressCandidates?category=Region,Subregion,Postal",
-            name: "Esri Geocoder USA",
-            placeholder: "Locate",
-            outFields: "*", 
-            category: "Region,Subregion,Postal"
-        }], 
         autoComplete: true,
         category:"Region,Subregion,Postal",
         map: map
@@ -138,7 +131,7 @@ require([
     });
 
     var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    var accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/test/FeatureServer/4",{
+    var accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/test/FeatureServer/3",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: accidentsInfoTemplate
