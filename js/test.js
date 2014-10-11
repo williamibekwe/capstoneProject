@@ -120,7 +120,7 @@ require([
     });
 
 
-    var countyjson = {title:"NAME_1",content:"<tr>County Name: <td>${county}</td></tr> "+ 
+    var countyjson = {title:"${NAME_1)",content:"<tr>County Name: <td>${county}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
@@ -134,7 +134,7 @@ require([
     });
 
 
-    var zipjson = {title:"NAME_1",content:"<tr>County Name: <td>${county}</td></tr> "+ 
+    var zipjson = {title:"${NAME_1}",content:"<tr>County Name: <td>${county}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${Number_of}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${Number_o_1}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${Number_o_2}</td></tr>" + 
