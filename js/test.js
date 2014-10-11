@@ -1,4 +1,4 @@
-var map, geocoder, csv;
+var map, geocoder, maxExtent;
 require([
     "esri/map", "esri/dijit/Geocoder", "esri/layers/CSVLayer",
     "esri/layers/FeatureLayer", "dojo/dom","esri/symbols/SimpleLineSymbol",
@@ -18,7 +18,7 @@ require([
     map = new Map("map", {
         basemap: "gray",
         center: [-98.215, 38.382],
-        zoom: 4,
+        zoom: 3,
     });
 
     /// Adding black map
@@ -107,8 +107,7 @@ require([
 
 
     //state renderer
-    var statejson = {title:"Attributes",content:"<tr>State Name: <td>${NAME_1}</tr></td>" + 
-                                   "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
+    var statejson = {title:"${NAME_1}",content:"<tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
                                     "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                     "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                     "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
@@ -121,8 +120,7 @@ require([
     });
 
 
-    var countyjson = {title:"Attributes",content:"<tr>State Name: <td>${NAME_1}</tr></td>" + 
-                                             "<br><tr>County Name: <td>${county}</td></tr> "+ 
+    var countyjson = {title:"NAME_1",content:"<tr>County Name: <td>${county}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
@@ -136,8 +134,7 @@ require([
     });
 
 
-    var zipjson = {title:"Attributes",content:"<tr>State Name: <td>${NAME_1}</tr></td>" + 
-                                             "<br><tr>County Name: <td>${county}</td></tr> "+ 
+    var zipjson = {title:"NAME_1",content:"<tr>County Name: <td>${county}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${Number_of}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${Number_o_1}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${Number_o_2}</td></tr>" + 
@@ -214,6 +211,15 @@ require([
         console.log(map.getLevel());
         console.log(countyFeatureLayer);
         console.log(zipFeatureLayer);
+
+        //  if((map.extent.xmin < maxExtent.xmin) ||
+        //     (map.extent.ymin < maxExtent.ymin)  ||
+        //     (map.extent.xmax > maxExtent.xmax) ||
+        //     (map.extent.ymax > maxExtent.ymax) 
+        //     ) {
+        //     map.setExtent(maxExtent);
+        //     console.log("max extent reached, rolling back to previous extent");
+        // }
         
         if( map.getLevel() <= 7){
            stateFeatureLayer.setVisibility(true); 
