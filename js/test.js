@@ -26,7 +26,7 @@ require([
     //map.addLayer(basemap);
 
     MyGeocoder = [{
-        url: "findAddressCandidates?category=Region,Subregion,Postal",
+       // url: "findAddressCandidates?category=Region,Subregion,Postal",
         placeholder: "Find a place",
         sourceCountry: "USA"
     }];
@@ -82,56 +82,77 @@ require([
    
 
     // alternatively, ArcGIS Server's generate renderer task could be used
-    var rend = new SimpleRenderer(symbol);
-    var renderer = new SimpleRenderer(symbol2);
+    // var rend = new SimpleRenderer(symbol);
+    // var renderer = new SimpleRenderer(symbol2);
 
 
 
-     // alternatively, ArcGIS Server's generate renderer task could be used
-    var countyrenderer = new ClassBreaksRenderer(symbol, "num_fata_1");
-    countyrenderer.addBreak(0, 25, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
-    countyrenderer.addBreak(25, 75, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
-    countyrenderer.addBreak(75, 175, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
-    countyrenderer.addBreak(175, 400, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
-    countyrenderer.addBreak(400, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
+    //  // alternatively, ArcGIS Server's generate renderer task could be used
+    // var countyrenderer = new ClassBreaksRenderer(symbol, "num_fata_1");
+    // countyrenderer.addBreak(0, 25, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
+    // countyrenderer.addBreak(25, 75, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
+    // countyrenderer.addBreak(75, 175, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
+    // countyrenderer.addBreak(175, 400, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
+    // countyrenderer.addBreak(400, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
 
 
-     // alternatively, ArcGIS Server's generate renderer task could be used
-    var ziprenderer = new ClassBreaksRenderer(symbol, "num_fata_1");
-    ziprenderer.addBreak(0, 5, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
-    ziprenderer.addBreak(5, 10, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
-    ziprenderer.addBreak(10, 20, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
-    ziprenderer.addBreak(20, 30, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
-    ziprenderer.addBreak(30, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
+    //  // alternatively, ArcGIS Server's generate renderer task could be used
+    // var ziprenderer = new ClassBreaksRenderer(symbol, "num_fata_1");
+    // ziprenderer.addBreak(0, 5, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
+    // ziprenderer.addBreak(5, 10, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
+    // ziprenderer.addBreak(10, 20, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
+    // ziprenderer.addBreak(20, 30, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
+    // ziprenderer.addBreak(30, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
 
 
 
     //state renderer
-    var stateInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    var stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/test/FeatureServer/2",{
+    var statejson = {title:"Attributes",content:"<tr>State Name: <td>${NAME_1}</tr></td>" + 
+                                   "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
+                                    "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
+                                    "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
+                                    "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
+                                    "<br><tr>Number of Of Occupants: <td>${num_occpts}</td></tr>"};
+    var stateInfoTemplate = new InfoTemplate(statejson);
+    var stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: stateInfoTemplate
     });
 
 
-    var countyInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    var countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/test/FeatureServer/0",{
+    var countyjson = {title:"Attributes",content:"<tr>State Name: <td>${NAME_1}</tr></td>" + 
+                                             "<br><tr>County Name: <td>${county}</td></tr> "+ 
+                                             "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
+                                             "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
+                                             "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
+                                             "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
+                                             "<br><tr>Number of Of Occupants: <td>${num_occpts}</td></tr>"};
+    var countyInfoTemplate = new InfoTemplate(countyjson);
+    var countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/0",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: countyInfoTemplate
     });
 
 
-    var zipInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    var zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/test/FeatureServer/1",{
+    var zipjson = {title:"Attributes",content:"<tr>State Name: <td>${NAME_1}</tr></td>" + 
+                                             "<br><tr>County Name: <td>${county}</td></tr> "+ 
+                                             "<br><tr>Number of Accidents: <td>${Number_of}</td></tr> "+ 
+                                             "<br><tr>Number of Fatalities: <td>${Number_o_1}</td></tr>"+ 
+                                             "<br><tr>Number of Deaths in Vehicles: <td>${Number_o_2}</td></tr>" + 
+                                             "<br><tr>Number of Pedestrian Deaths: <td>${Number_o_3}</td></tr>" + 
+                                             "<br><tr>Number of Of Occupants: <td>${Number_o_4}</td></tr>"};
+
+ var zipInfoTemplate = new InfoTemplate(zipjson);
+    var zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/1",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplate
     });
 
     var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    var accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/test/FeatureServer/3",{
+    var accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: accidentsInfoTemplate
@@ -139,14 +160,14 @@ require([
 
 
     //zipFeatureLayer.setDefinitionExpression("STATE = 'CA'");
-    map.addLayer(accidentsFeatureLayer);
-    stateFeatureLayer.setRenderer(rend);
+    //map.addLayer(accidentsFeatureLayer);
+    //stateFeatureLayer.setRenderer(rend);
     map.addLayer(stateFeatureLayer); 
-    countyFeatureLayer.setRenderer(rend);
+    //countyFeatureLayer.setRenderer(rend);
     map.addLayer(countyFeatureLayer);
-    zipFeatureLayer.setRenderer(rend);
+    //zipFeatureLayer.setRenderer(rend);
     map.addLayer(zipFeatureLayer);
-    accidentsFeatureLayer.setRenderer(renderer);
+    //accidentsFeatureLayer.setRenderer(renderer);
 
      // create a text symbol to define the style of labels
     var statesLabel = new TextSymbol().setColor(new Color([0, 0, 0, 1]));
