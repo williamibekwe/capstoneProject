@@ -215,11 +215,11 @@ require([
         console.log(countyFeatureLayer);
         console.log(zipFeatureLayer);
         
-        if( map.getLevel() <= 6){
+        if( map.getLevel() <= 7){
            stateFeatureLayer.setVisibility(true); 
            countyFeatureLayer.setVisibility(false); 
            zipFeatureLayer.setVisibility(false); 
-        } else if(map.getLevel() > 6 &&  map.getLevel() <= 10){
+        } else if(map.getLevel() > 7 &&  map.getLevel() <= 10){
             stateFeatureLayer.setVisibility(false);
             countyFeatureLayer.setVisibility(true); 
             zipFeatureLayer.setVisibility(false); 
