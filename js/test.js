@@ -120,7 +120,7 @@ require([
     });
 
 
-    var countyjson = {title:"${county) County",content:"<tr>State Name: <td>${$NAME_1}</td></tr> "+ 
+    var countyjson = {title:"${county} County",content:"<tr>State Name: <td>${NAME_1}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
