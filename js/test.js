@@ -134,7 +134,7 @@ require([
     });
 
 
-    var zipjson = {title:"${zipcode}",content:"<tr>County Name: <td>${county}</td></tr> "+ 
+    var zipjson = {title:"${ZIPCODE}",content:"<tr>County Name: <td>${county}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${Number_of}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${Number_o_1}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${Number_o_2}</td></tr>" + 
