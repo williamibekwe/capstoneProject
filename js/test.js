@@ -113,7 +113,7 @@ require([
                                     "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
                                     "<br><tr>Number of Of Occupants: <td>${num_occpts}</td></tr>"};
     var stateInfoTemplate = new InfoTemplate(statejson);
-    var stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
+    var stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/0",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: stateInfoTemplate
@@ -127,7 +127,7 @@ require([
                                              "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
                                              "<br><tr>Number of Of Occupants: <td>${num_occpts}</td></tr>"};
     var countyInfoTemplate = new InfoTemplate(countyjson);
-    var countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/0",{
+    var countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/1",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: countyInfoTemplate
@@ -142,18 +142,18 @@ require([
                                              "<br><tr>Number of Of Occupants: <td>${Number_o_4}</td></tr>"};
 
  var zipInfoTemplate = new InfoTemplate(zipjson);
-    var zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/1",{
+    var zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplate
     });
 
-    var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    var accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
-        mode: FeatureLayer.MODE_ONDEMAND,
-        outFields: ["*"],
-        infoTemplate: accidentsInfoTemplate
-    });
+    // var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
+    // var accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
+    //     mode: FeatureLayer.MODE_ONDEMAND,
+    //     outFields: ["*"],
+    //     infoTemplate: accidentsInfoTemplate
+    // });
 
 
     //zipFeatureLayer.setDefinitionExpression("STATE = 'CA'");
