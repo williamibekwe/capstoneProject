@@ -1,4 +1,46 @@
 var map, geocoder, maxExtent;
+var stateFeatureLayer;
+var zipFeatureLayer;
+var countyFeatureLayer;
+var accidentsFeatureLayer;
+var hm = false;
+var gi = true;
+
+var mapmode = function(mode){
+    if( mode == "hm"){
+        stateFeatureLayer.setVisibility(false);
+        zipFeatureLayer.setVisibility(false);
+        countyFeatureLayer.setVisibility(false);
+        accidentsFeatureLayer.setVisibility(true);
+        gi = false; 
+        hm = true; 
+    } else if (mode == "gi") { 
+        stateFeatureLayer.setVisibility(true);
+        zipFeatureLayer.setVisibility(true);
+        countyFeatureLayer.setVisibility(true);
+        accidentsFeatureLayer.setVisibility(false);
+        hm = false;
+        gi = true;
+    }
+    checkLevels();
+};
+
+var checkLevels = function(){ 
+
+    if( map.getLevel() <= 7 && gi){
+        stateFeatureLayer.setVisibility(true); 
+        countyFeatureLayer.setVisibility(true); 
+        zipFeatureLayer.setVisibility(false); 
+    } else if(map.getLevel() > 7 &&  map.getLevel() <= 10 && gi){
+        stateFeatureLayer.setVisibility(false);
+        countyFeatureLayer.setVisibility(true); 
+        zipFeatureLayer.setVisibility(false); 
+    } else if( gi )  { 
+        countyFeatureLayer.setVisibility(false); 
+        stateFeatureLayer.setVisibility(false); 
+        zipFeatureLayer.setVisibility(true); 
+    }
+}
 require([
     "esri/map", "esri/dijit/Geocoder", "esri/layers/CSVLayer",
     "esri/layers/FeatureLayer", "dojo/dom","esri/symbols/SimpleLineSymbol",
@@ -18,31 +60,33 @@ require([
     map = new Map("map", {
         basemap: "gray",
         center: [-98.215, 38.382],
-        zoom: 3,
+        zoom: 5,
     });
 
     /// Adding black map
     //var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/WM_Slate_Base/MapServer");
     //map.addLayer(basemap);
 
-    MyGeocoder = [{
-       // url: "findAddressCandidates?category=Region,Subregion,Postal",
-        placeholder: "Find a place",
-        sourceCountry: "USA"
-    }];
     geocoder = new Geocoder({
-        //arcgisGeocoder: false, 
-       // geocoders: MyGeocoder,
-        autoComplete: true,
-        category:"Region,Subregion,Postal",
-        map: map
+            autoComplete: true,
+            highlightLocation: true,
+            map: map,
+            arcgisGeocoder: {
+                outFields:"*",
+                categories: ["Postal", "City", "Region", "Subregion"], 
+                placeholder: "Enter a zipcode, county, or state.", 
+                sourceCountry: "USA"
+            }
         }, dom.byId("search"));
 
-        geocoder.startup();
+    geocoder.startup();
 
-        geocoder.on("select", function(evt){
-            console.log(evt);
-        });
+    geocoder.on("find-results", function(evt){
+        console.log(evt.results); 
+        if( evt.results[0].feature.attributes.Type == "State of Province"){   
+        }
+    });
+
     // csv = new CSVLayer("data/accident.csv");
 
     // var orangeRed = new Color([238, 69, 0, 0.5]); // hex is #ff4500
@@ -57,7 +101,7 @@ require([
     //map.addLayer(csv);
 
     var symbol = new SimpleFillSymbol();
-   symbol.setColor(new Color([238, 63, 63, 0.0]));
+    symbol.setColor(new Color([238, 63, 63, 0.0]));
     var statesColor = new Color("#666");
     var statesLine = new SimpleLineSymbol("solid", statesColor, 1.5);
     var statesSymbol = new SimpleFillSymbol("solid", statesLine, null);
@@ -74,36 +118,9 @@ require([
           new Color([238, 63, 63, 0.3])
         );
 
-    // Add five breaks to the renderer.
-    // If you have ESRI's ArcMap available, this can be a good way to determine break values.
-    // You can also copy the RGB values from the color schemes ArcMap applies, or use colors
-    // from a site like www.colorbrewer.org
-    
-   
 
-    // alternatively, ArcGIS Server's generate renderer task could be used
-    // var rend = new SimpleRenderer(symbol);
-    // var renderer = new SimpleRenderer(symbol2);
-
-
-
-    //  // alternatively, ArcGIS Server's generate renderer task could be used
-    // var countyrenderer = new ClassBreaksRenderer(symbol, "num_fata_1");
-    // countyrenderer.addBreak(0, 25, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
-    // countyrenderer.addBreak(25, 75, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
-    // countyrenderer.addBreak(75, 175, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
-    // countyrenderer.addBreak(175, 400, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
-    // countyrenderer.addBreak(400, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
-
-
-    //  // alternatively, ArcGIS Server's generate renderer task could be used
-    // var ziprenderer = new ClassBreaksRenderer(symbol, "num_fata_1");
-    // ziprenderer.addBreak(0, 5, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
-    // ziprenderer.addBreak(5, 10, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
-    // ziprenderer.addBreak(10, 20, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
-    // ziprenderer.addBreak(20, 30, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
-    // ziprenderer.addBreak(30, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
-
+    var rend = new SimpleRenderer(symbol);
+    var renderer = new SimpleRenderer(symbol2);
 
 
     //state renderer
@@ -111,9 +128,9 @@ require([
                                     "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                     "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                     "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
-                                    "<br><tr>Number of Of Occupants: <td>${num_occpts}</td></tr>"};
+                                    "<br><tr>Number of Occupants: <td>${num_occpts}</td></tr>"};
     var stateInfoTemplate = new InfoTemplate(statejson);
-    var stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/0",{
+     stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/0",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: stateInfoTemplate
@@ -125,9 +142,9 @@ require([
                                              "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                              "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
-                                             "<br><tr>Number of Of Occupants: <td>${num_occpts}</td></tr>"};
+                                             "<br><tr>Number of Occupants: <td>${num_occpts}</td></tr>"};
     var countyInfoTemplate = new InfoTemplate(countyjson);
-    var countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/1",{
+     countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/1",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: countyInfoTemplate
@@ -139,36 +156,37 @@ require([
                                              "<br><tr>Number of Fatalities: <td>${Number_o_1}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${Number_o_2}</td></tr>" + 
                                              "<br><tr>Number of Pedestrian Deaths: <td>${Number_o_3}</td></tr>" + 
-                                             "<br><tr>Number of Of Occupants: <td>${Number_o_4}</td></tr>"};
+                                             "<br><tr>Number of Occupants: <td>${Number_o_4}</td></tr>"};
 
- var zipInfoTemplate = new InfoTemplate(zipjson);
-    var zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
+    var zipInfoTemplate = new InfoTemplate(zipjson);
+    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplate
     });
 
-    // var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    // var accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
-    //     mode: FeatureLayer.MODE_ONDEMAND,
-    //     outFields: ["*"],
-    //     infoTemplate: accidentsInfoTemplate
-    // });
+    var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
+    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
+        mode: FeatureLayer.MODE_ONDEMAND,
+        outFields: ["*"],
+        infoTemplate: accidentsInfoTemplate
+    });
 
 
     //zipFeatureLayer.setDefinitionExpression("STATE = 'CA'");
-    //map.addLayer(accidentsFeatureLayer);
-    //stateFeatureLayer.setRenderer(rend);
+    map.addLayer(accidentsFeatureLayer);
+    accidentsFeatureLayer.setVisibility(false);
+   //stateFeatureLayer.setRenderer(rend);
+    map.addLayer(countyFeatureLayer);
     map.addLayer(stateFeatureLayer); 
     //countyFeatureLayer.setRenderer(rend);
-    map.addLayer(countyFeatureLayer);
     //zipFeatureLayer.setRenderer(rend);
     map.addLayer(zipFeatureLayer);
-    //accidentsFeatureLayer.setRenderer(renderer);
+   accidentsFeatureLayer.setRenderer(renderer);
 
      // create a text symbol to define the style of labels
     var statesLabel = new TextSymbol().setColor(new Color([0, 0, 0, 1]));
-    statesLabel.font.setSize("10pt");
+    statesLabel.font.setSize("14pt");
     statesLabel.font.setFamily("arial");
 
     statesLabelRenderer = new SimpleRenderer(statesLabel);
@@ -191,7 +209,7 @@ require([
     // using the field named "admin"
     countylabels.addFeatureLayer(countyFeatureLayer, countyLabelRenderer, "{" + "county" + "}");
     // add the label layer to the map
-    map.addLayer(countylabels);
+    //map.addLayer(countylabels);
 
 
    var zipLabel = new TextSymbol().setColor(new Color([0, 0, 0, 1]));
@@ -206,35 +224,18 @@ require([
     // add the label layer to the map
     map.addLayer(ziplabels);
 
+    // Mouse click --> populate information 
+    stateFeatureLayer.on("click", function(evt){ 
+        console.log( "feature" + statejson.content);
+    });
 
     map.on("extent-change", function(){ 
         console.log(map.getLevel());
         console.log(countyFeatureLayer);
         console.log(zipFeatureLayer);
-
-        //  if((map.extent.xmin < maxExtent.xmin) ||
-        //     (map.extent.ymin < maxExtent.ymin)  ||
-        //     (map.extent.xmax > maxExtent.xmax) ||
-        //     (map.extent.ymax > maxExtent.ymax) 
-        //     ) {
-        //     map.setExtent(maxExtent);
-        //     console.log("max extent reached, rolling back to previous extent");
-        // }
+        checkLevels();
         
-        if( map.getLevel() <= 7){
-           stateFeatureLayer.setVisibility(true); 
-           countyFeatureLayer.setVisibility(false); 
-           zipFeatureLayer.setVisibility(false); 
-        } else if(map.getLevel() > 7 &&  map.getLevel() <= 10){
-            stateFeatureLayer.setVisibility(false);
-            countyFeatureLayer.setVisibility(true); 
-            zipFeatureLayer.setVisibility(false); 
-        } else { 
-            countyFeatureLayer.setVisibility(false); 
-            stateFeatureLayer.setVisibility(false); 
-            zipFeatureLayer.setVisibility(true); 
-         }
-
-
     });
+
+
 });

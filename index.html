@@ -5,12 +5,73 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Automobile Fatal Accident Map</title>
     <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/bootstrap.css">
     <script src="http://js.arcgis.com/3.10/"></script>
-    <script src="js/test.js"></script>
+    <script src="scripts/test.js"></script>
+    
+    <script src="scripts/jquery-1.11.1.min.js"></script>
+    <script src="scripts/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
   </head>
   <body>
-    <div id="search"></div>
-    <div id="map"></div>
+     
+    <div id="right">
+      <div id="search"></div>
+      <div id="map"></div>
+    </div> 
+    <div  id="left">
+      <h4 align="center">Automobile Fatal Accident Map</h4>
+        <div class="accordion" id="accordion2">
+            <div class="panel">
+               <a  onclick="mapmode('gi')" class="accordion" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                <div align="center" class="accbutton"> 
+                  <h3>General Information </h3>
+                </div>
+                </a>
+           
+          <div id="collapseOne" class="accordion-body collapse in">
+          <div class="accordion-inner">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+           </div> 
+        </div>
+            <div class="panel">
+               <a  onclick="mapmode('hm')" class="accordion" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                <div align="center" class="accbutton"> 
+                <h3>Heat Map</h3>
+              </div>
+                </a>
+      
+          <div id="collapseTwo" class="accordion-body collapse">
+          <div class="accordion-inner">
+             <div id="cluster"> 
+                <input type="checkbox" checked> <label> Cluster 1</label></input> <br>
+                <p>craft beer labore wes anderson cred nesciunt sapiente ea proident. Anim aesthetic synth nesciunt you probably haven't heard of th</p>
+                <input type="checkbox"> <label> Cluster 2</label></input> <br>
+                 <p>craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad veganaesthetic synth nesciunt you probably haven't heard of th</p>
+                <input type="checkbox"> <label> Cluster 3</label></input> <br>
+                 <p>craft beer labore Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of th</p>
+                <input type="checkbox"> <label> Cluster 4</label></input> <br>
+                 <p>craft beer  Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of th</p>
+              </div>
+          </div>
+                </div> 
+        </div>
+            <div class="panel">
+               <a class="accordion" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                <div align="center" class="accbutton"> 
+                <h3>Recommendations
+              </h3>
+              </div>
+                </a>
+          
+          <div id="collapseThree" class="accordion-body collapse">
+          <div  class="accordion-inner">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of th
+        </div>
+          </div> 
+    </div>
+  </div> 
   </body>
 </html>

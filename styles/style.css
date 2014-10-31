@@ -1,0 +1,69 @@
+   html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+   body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+   #search {
+        display: block;
+        position: absolute;
+        z-index: 3;
+        top: 20px;
+        right: 20px;
+      }
+    #right{ 
+      width: 80%;
+      height: 100%;
+      float: right;
+      z-index: 0;
+
+    }
+
+    #left{ 
+      padding-top:20px;
+      padding-bottom:20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-bottom: 20px;
+      display: block;
+      position: absolute;
+      float: left;
+      width: 20%;
+      height: 100%;
+      background-color: #ECECEC;
+      box-shadow: 5px 2px 4px black;
+      z-index: 99999;
+    }
+
+    #left > h4{ 
+        margin-top: 0px !important;
+        background-color: white ;
+        padding: 10px; 
+    }
+    .accbutton{
+      vertical-align: middle;
+      background-color: black;
+      padding: 5px;
+      border: 1px solid grey;
+    }
+
+    .accbutton  > h3{ 
+      margin-top: 10px !important;
+    }
+
+    .accordion-inner{ 
+      height: 550px;
+    }
+
+    #cluster{
+      padding: 10px;
+    }
+
+    #cluster label{ 
+      font-size: 25px;
+    }
