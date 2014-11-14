@@ -1,14 +1,16 @@
 var map, geocoder, maxExtent;
 var stateFeatureLayer;
 var zipFeatureLayer;
+var zipFeatureLayerCapita;
 var countyFeatureLayer;
+var countyFeatureLayerCapita;
 var accidentsFeatureLayer;
-var hm = false;
 var gi = true;
+var infomode = true; 
+var renderer1;
 
 var mapmode = function(mode){
     if( mode == "hm"){
-        stateFeatureLayer.setVisibility(false);
         zipFeatureLayer.setVisibility(false);
         countyFeatureLayer.setVisibility(false);
         accidentsFeatureLayer.setVisibility(true);
@@ -25,22 +27,83 @@ var mapmode = function(mode){
     checkLevels();
 };
 
-var checkLevels = function(){ 
+var mapversion = function(mode){
 
-    if( map.getLevel() <= 7 && gi){
-        stateFeatureLayer.setVisibility(true); 
-        countyFeatureLayer.setVisibility(true); 
-        zipFeatureLayer.setVisibility(false); 
-    } else if(map.getLevel() > 7 &&  map.getLevel() <= 10 && gi){
-        stateFeatureLayer.setVisibility(false);
-        countyFeatureLayer.setVisibility(true); 
-        zipFeatureLayer.setVisibility(false); 
-    } else if( gi )  { 
-        countyFeatureLayer.setVisibility(false); 
-        stateFeatureLayer.setVisibility(false); 
-        zipFeatureLayer.setVisibility(true); 
+    if( mode == "area"){ 
+        infomode = true;
+    } else {
+        infomode = false; 
     }
+        checkLevels();
+
+};
+
+var checkLevels = function(){ 
+if(gi){
+    if (infomode){
+        countyFeatureLayer.setVisibility(false); 
+        countyFeatureLayerCapita.setVisibility(true); 
+        zipFeatureLayer.setVisibility(false); 
+        zipFeatureLayerCapita.setVisibility(true); 
+    } else { 
+        countyFeatureLayer.setVisibility(true); 
+        countyFeatureLayerCapita.setVisibility(false); 
+        zipFeatureLayer.setVisibility(true); 
+        zipFeatureLayerCapita.setVisibility(false); 
+    }
+
+    if(map.getLevel() < 10 ){
+        stateFeatureLayer.setVisibility(true);
+    } else { 
+        stateFeatureLayer.setVisibility(false);
+    }
+} else { 
+
+    countyFeatureLayer.setVisibility(false); 
+    countyFeatureLayerCapita.setVisibility(false); 
+    zipFeatureLayer.setVisibility(false); 
+    zipFeatureLayerCapita.setVisibility(false); 
+    accidentsFeatureLayer.setVisibility(true);
+
+   
 }
+
+};
+
+
+
+var clusterFilter = function(){ 
+    var queryString = "";
+     if(document.getElementById('cluster1').checked){
+        queryString = "cluster = 1 ";
+     } else {
+        queryString = "cluster = 0 ";
+     }
+     if(document.getElementById('cluster2').checked){
+        queryString += "OR cluster = 2 ";
+     }
+     if(document.getElementById('cluster3').checked){
+        queryString += "OR cluster = 3 ";
+     }
+     if(document.getElementById('cluster4').checked){
+        queryString += "OR cluster = 4 ";
+     }
+     if(document.getElementById('cluster5').checked){
+        queryString += "OR cluster = 5 ";
+     }
+     if(document.getElementById('cluster6').checked){
+        queryString += "OR cluster = 6 ";
+     }
+     if(document.getElementById('cluster7').checked){
+        queryString += "OR cluster = 7 ";
+     }
+     if(document.getElementById('cluster8').checked){    
+        queryString += "OR cluster = 8";
+    }
+    accidentsFeatureLayer.setDefinitionExpression(queryString);
+};
+
+
 require([
     "esri/map", "esri/dijit/Geocoder", "esri/layers/CSVLayer",
     "esri/layers/FeatureLayer", "dojo/dom","esri/symbols/SimpleLineSymbol",
@@ -107,33 +170,15 @@ require([
     var statesSymbol = new SimpleFillSymbol("solid", statesLine, null);
     var statesRenderer = new SimpleRenderer(statesSymbol);
 
-        var symbol2 = new SimpleMarkerSymbol(
-          SimpleMarkerSymbol.STYLE_CIRCLE, 
-          19, 
-          new SimpleLineSymbol(
-            SimpleLineSymbol.STYLE_NULL, 
-            new Color([247, 34, 101, 0.9]), 
-            1
-          ),
-          new Color([238, 63, 63, 0.3])
-        );
-
 
     var rend = new SimpleRenderer(symbol);
-    var renderer = new SimpleRenderer(symbol2);
 
 
     //state renderer
-    var statejson = {title:"${NAME_1}",content:"<tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
-                                    "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
-                                    "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
-                                    "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
-                                    "<br><tr>Number of Occupants: <td>${num_occpts}</td></tr>"};
-    var stateInfoTemplate = new InfoTemplate(statejson);
+    
      stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/0",{
         mode: FeatureLayer.MODE_ONDEMAND,
-        outFields: ["*"],
-        infoTemplate: stateInfoTemplate
+        outFields: ["*"]
     });
 
 
@@ -142,47 +187,75 @@ require([
                                              "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                              "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
-                                             "<br><tr>Number of Occupants: <td>${num_occpts}</td></tr>"};
+                                             "<br><tr>Population: <td>${population}</td></tr>" + 
+                                             "<br><tr>Square Mile Area: <td>${area}</td></tr>"};
     var countyInfoTemplate = new InfoTemplate(countyjson);
      countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/1",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: countyInfoTemplate
+    }); 
+
+    var countyInfoTemplateCapita = new InfoTemplate(countyjson);
+    countyFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
+        mode: FeatureLayer.MODE_ONDEMAND,
+        outFields: ["*"],
+        infoTemplate: countyInfoTemplateCapita
     });
 
 
-    var zipjson = {title:"${ZIPCODE}",content:"<tr>County Name: <td>${county}</td></tr> "+ 
-                                             "<br><tr>Number of Accidents: <td>${Number_of}</td></tr> "+ 
-                                             "<br><tr>Number of Fatalities: <td>${Number_o_1}</td></tr>"+ 
-                                             "<br><tr>Number of Deaths in Vehicles: <td>${Number_o_2}</td></tr>" + 
-                                             "<br><tr>Number of Pedestrian Deaths: <td>${Number_o_3}</td></tr>" + 
-                                             "<br><tr>Number of Occupants: <td>${Number_o_4}</td></tr>"};
+    var zipjson = {title:"${ZIPCODE}",content:"<tr>State: <td>${STATE}</td></tr> "+ 
+                                             "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
+                                             "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
+                                             "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
+                                             "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
+                                             "<br><tr>Population: <td>${population}</td></tr>" + 
+                                             "<br><tr>Square Mile Area: <td>${area}</td></tr>"};
 
     var zipInfoTemplate = new InfoTemplate(zipjson);
-    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
+    var zipInfoTemplateCapita = new InfoTemplate(zipjson);
+    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplate
     });
+    zipFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/4",{
+        mode: FeatureLayer.MODE_ONDEMAND,
+        outFields: ["*"],
+        infoTemplate: zipInfoTemplateCapita
+    });
 
     var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
+    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/6",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: accidentsInfoTemplate
     });
 
+    renderer1 = new ClassBreaksRenderer(accidentsFeatureLayer, "cluster");
+    renderer1.addBreak(1, 1, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([204, 0, 0, 0.4] )));
+    renderer1.addBreak(2, 2, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 0, 0.4] )));
+    renderer1.addBreak(3, 3, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 255, 0, 0.4] )));
+    renderer1.addBreak(4, 4, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 128, 255, 0.4] )));
+    renderer1.addBreak(5, 5, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([127, 0, 127, 0.4] )));
+    renderer1.addBreak(6, 6, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 0, 255, 0.4] )));
+    renderer1.addBreak(7, 7, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 0, 0, 0.4] )));
+    renderer1.addBreak(8, 8, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 255, 0.4] )));
 
-    //zipFeatureLayer.setDefinitionExpression("STATE = 'CA'");
+    accidentsFeatureLayer.setDefinitionExpression("cluster = 1 ");
     map.addLayer(accidentsFeatureLayer);
     accidentsFeatureLayer.setVisibility(false);
    //stateFeatureLayer.setRenderer(rend);
     map.addLayer(countyFeatureLayer);
+    map.addLayer(countyFeatureLayerCapita);
     map.addLayer(stateFeatureLayer); 
     //countyFeatureLayer.setRenderer(rend);
     //zipFeatureLayer.setRenderer(rend);
     map.addLayer(zipFeatureLayer);
-   accidentsFeatureLayer.setRenderer(renderer);
+    map.addLayer(zipFeatureLayerCapita);
+   accidentsFeatureLayer.setRenderer(renderer1);
+    
+
 
      // create a text symbol to define the style of labels
     var statesLabel = new TextSymbol().setColor(new Color([0, 0, 0, 1]));
@@ -208,6 +281,7 @@ require([
     // tell the label layer to label the countries feature layer 
     // using the field named "admin"
     countylabels.addFeatureLayer(countyFeatureLayer, countyLabelRenderer, "{" + "county" + "}");
+    countylabels.addFeatureLayer(countyFeatureLayerCapita, countyLabelRenderer, "{" + "county" + "}");
     // add the label layer to the map
     //map.addLayer(countylabels);
 
@@ -221,6 +295,7 @@ require([
     // tell the label layer to label the countries feature layer 
     // using the field named "admin"
     ziplabels.addFeatureLayer(zipFeatureLayer, zipLabelRenderer, "{" + "ZIPCODE" + "}");
+    ziplabels.addFeatureLayer(zipFeatureLayerCapita, zipLabelRenderer, "{" + "ZIPCODE" + "}");
     // add the label layer to the map
     map.addLayer(ziplabels);
 
@@ -232,7 +307,7 @@ require([
     map.on("extent-change", function(){ 
         console.log(map.getLevel());
         console.log(countyFeatureLayer);
-        console.log(zipFeatureLayer);
+     //   console.log(zipFeatureLayer);
         checkLevels();
         
     });

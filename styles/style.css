@@ -8,6 +8,7 @@
         background-color: #FFF;
         overflow: hidden;
         font-family: "Trebuchet MS";
+        color: white;
       }
    #search {
         display: block;
@@ -17,11 +18,9 @@
         right: 20px;
       }
     #right{ 
-      width: 80%;
+      width: 100%;
       height: 100%;
-      float: right;
       z-index: 0;
-
     }
 
     #left{ 
@@ -32,24 +31,28 @@
       margin-bottom: 20px;
       display: block;
       position: absolute;
-      float: left;
-      width: 20%;
+      width: 25%;
+      min-width: 350px;
       height: 100%;
-      background-color: #ECECEC;
-      box-shadow: 5px 2px 4px black;
+      background-color: rgb(0, 0, 0);
+       /* RGBa with 0.6 opacity */
+      background-color: rgba(0, 0, 0, 0.8);      
       z-index: 99999;
+      color: white ;
+
     }
 
     #left > h4{ 
         margin-top: 0px !important;
-        background-color: white ;
         padding: 10px; 
     }
     .accbutton{
       vertical-align: middle;
-      background-color: black;
       padding: 5px;
-      border: 1px solid grey;
+      margin-bottom: 10px;
+       background-color: rgb(204, 204, 204);
+       /* RGBa with 0.6 opacity */
+      background-color: rgba(204, 204, 204, 0.8);      
     }
 
     .accbutton  > h3{ 
@@ -62,8 +65,21 @@
 
     #cluster{
       padding: 10px;
+      display: block;
+      height: 550px;
+      overflow: scroll;
+
     }
 
     #cluster label{ 
-      font-size: 25px;
+      font-size: 15px;
+    }
+
+    #gi{
+      padding:10px;
+    }
+
+    #gi > label{ 
+      padding: 10px;
+      font-size: 15px;
     }
