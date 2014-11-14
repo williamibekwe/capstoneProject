@@ -233,14 +233,14 @@ require([
     });
 
     renderer1 = new ClassBreaksRenderer(accidentsFeatureLayer, "cluster");
-    renderer1.addBreak(1, 1, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([204, 0, 0, 0.4] )));
-    renderer1.addBreak(2, 2, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 0, 0.4] )));
-    renderer1.addBreak(3, 3, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 255, 0, 0.4] )));
-    renderer1.addBreak(4, 4, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 128, 255, 0.4] )));
-    renderer1.addBreak(5, 5, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([127, 0, 127, 0.4] )));
-    renderer1.addBreak(6, 6, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 0, 255, 0.4] )));
-    renderer1.addBreak(7, 7, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 0, 0, 0.4] )));
-    renderer1.addBreak(8, 8, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 255, 0.4] )));
+    renderer1.addBreak(1, 1, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([204, 0, 0, 0.3] )));
+    renderer1.addBreak(2, 2, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 0, 0.3] )));
+    renderer1.addBreak(3, 3, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 255, 0, 0.3] )));
+    renderer1.addBreak(4, 4, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 128, 255, 0.3] )));
+    renderer1.addBreak(5, 5, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([127, 0, 127, 0.3] )));
+    renderer1.addBreak(6, 6, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 0, 255, 0.3] )));
+    renderer1.addBreak(7, 7, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 0, 0, 0.3] )));
+    renderer1.addBreak(8, 8, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 255, 0.5] )));
 
     accidentsFeatureLayer.setDefinitionExpression("cluster = 1 ");
     map.addLayer(accidentsFeatureLayer);

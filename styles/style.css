@@ -83,3 +83,9 @@
       padding: 10px;
       font-size: 15px;
     }
+
+    .esriSimpleSliderTL{
+      right: 20px ;
+      left: initial !important ;
+      top: 70px !important;
+    }
