@@ -182,15 +182,15 @@ require([
     });
 
 
-    var countyjson = {title:"${county} County",content:"<tr>State Name: <td>${NAME_1}</td></tr> "+ 
+    var countyjson = {title:"---",content:        "<tr>County: <td>${county}</td></tr>" + 
+                                             "<br><tr>State Name: <td>${NAME_1}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                              "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
                                              "<br><tr>Population: <td>${population}</td></tr>" + 
-                                             "<br><tr>Square Mile Area: <td>${area}</td></tr>" +
-                                             "<br><tr>Square Mile Area: <td>${num_acc__1}</td></tr>"+ 
-                                             "<br><tr>Square Mile Area: <td>${num_acc_pe}</td></tr>"};
+                                             "<br><tr>Square Mile Area: <td>${area}</td></tr>" };
+
     var countyInfoTemplate = new InfoTemplate(countyjson);
      countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
         mode: FeatureLayer.MODE_ONDEMAND,
@@ -236,13 +236,13 @@ require([
 
     renderer1 = new ClassBreaksRenderer(accidentsFeatureLayer, "cluster");
     renderer1.addBreak(1, 1, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([204, 0, 0, 0.3] )));
-    renderer1.addBreak(2, 2, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 0, 0.3] )));
+    renderer1.addBreak(2, 2, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([204, 204, 0, 0.3] )));
     renderer1.addBreak(3, 3, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 255, 0, 0.3] )));
-    renderer1.addBreak(4, 4, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 128, 255, 0.3] )));
+    renderer1.addBreak(4, 4, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 102, 204, 0.3] )));
     renderer1.addBreak(5, 5, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([127, 0, 127, 0.3] )));
     renderer1.addBreak(6, 6, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 0, 255, 0.3] )));
     renderer1.addBreak(7, 7, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 0, 0, 0.3] )));
-    renderer1.addBreak(8, 8, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([255, 255, 255, 0.5] )));
+    renderer1.addBreak(8, 8, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 204, 204, 0.3] )));
 
     accidentsFeatureLayer.setDefinitionExpression("cluster = 1 ");
     map.addLayer(accidentsFeatureLayer);
