@@ -41,15 +41,15 @@ var mapversion = function(mode){
 var checkLevels = function(){ 
 if(gi){
     if (infomode){
-        countyFeatureLayer.setVisibility(false); 
-        countyFeatureLayerCapita.setVisibility(true); 
-        zipFeatureLayer.setVisibility(false); 
-        zipFeatureLayerCapita.setVisibility(true); 
-    } else { 
         countyFeatureLayer.setVisibility(true); 
         countyFeatureLayerCapita.setVisibility(false); 
         zipFeatureLayer.setVisibility(true); 
         zipFeatureLayerCapita.setVisibility(false); 
+    } else { 
+        countyFeatureLayer.setVisibility(false); 
+        countyFeatureLayerCapita.setVisibility(true); 
+        zipFeatureLayer.setVisibility(false); 
+        zipFeatureLayerCapita.setVisibility(true); 
     }
 
     if(map.getLevel() < 10 ){
@@ -188,7 +188,9 @@ require([
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                              "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
                                              "<br><tr>Population: <td>${population}</td></tr>" + 
-                                             "<br><tr>Square Mile Area: <td>${area}</td></tr>"};
+                                             "<br><tr>Square Mile Area: <td>${area}</td></tr>" +
+                                             "<br><tr>Square Mile Area: <td>${num_acc__1}</td></tr>"+ 
+                                             "<br><tr>Square Mile Area: <td>${num_acc_pe}</td></tr>"};
     var countyInfoTemplate = new InfoTemplate(countyjson);
      countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
         mode: FeatureLayer.MODE_ONDEMAND,
