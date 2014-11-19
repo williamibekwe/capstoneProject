@@ -73,7 +73,12 @@
     }
 
     #cluster label{ 
-      font-size: 15px;
+      font-size: 12px;
+    } 
+
+    #cluster p{ 
+      font-size: 10px;
+      padding-left: 15px;
     }
 
     #gi{
@@ -96,11 +101,6 @@
       color black; 
     }
 
-
-    .esriPopupWrapper{
-      height: 300px;
-      width: 300px;
-  }
 
     .esriPopup .contentPane {
             background-color: rgb(204, 204, 204);

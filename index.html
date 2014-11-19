@@ -46,21 +46,21 @@
           <div id="collapseTwo" class="accordion-body collapse">
           <div class="accordion-inner">
              <div id="cluster"> 
-                <input type="checkbox"  id="cluster1" checked> <label> Cluster 1</label></input> <br>
-                <input type="checkbox"  id="cluster2"> <label> Cluster 2</label></input> <br>      
-                <input type="checkbox"  id="cluster3"> <label> Cluster 3</label></input> <br>
-                <input type="checkbox"  id="cluster4"> <label> Cluster 4</label></input> <br>
-                <input type="checkbox"  id="cluster5"> <label> Cluster 5</label></input> <br>
-                 <input type="checkbox"  id="cluster6"> <label> Cluster 6</label></input> <br>
-                 <input type="checkbox"  id="cluster7"> <label> Cluster 7</label></input> <br>
-                 <input type="checkbox"  id="cluster8"> <label> Cluster 8</label></input> <br>
-                 <button onclick="clusterFilter()"> Plot Segments</button> 
+                <input type="checkbox"  id="cluster1" checked> <label> Cluster 1: </label> <p>Clear Weather, Female Drivers, Afternoon, Average Age of 45, Weekdays</p></input>
+                <input type="checkbox"  id="cluster2"> <label> Cluster 2: </label> <p>Urban Setting, Pedestrians Involvment, Single Car Accidents, Non-Drunk Driver, Evening</p></input>       
+                <input type="checkbox"  id="cluster3"> <label> Cluster 3: </label> <p>Highway Setting, Clear Weather, Non-Drunk Driver, Morning Commute</p></input> 
+                <input type="checkbox"  id="cluster4"> <label> Cluster 4: </label> <p>Rainy/Snowy Weather, Drunk Driver, Late at Night (After 10pm), Average Age 36</p></input> 
+                <input type="checkbox"  id="cluster5"> <label> Cluster 5: </label> <p>Highway Setting, Clear weather, Non-Drunk Driver, Older Males (60+), Afternoon </p></input> 
+                 <input type="checkbox"  id="cluster6"> <label> Cluster 6: </label> <p>Clear Waeather , Non-Drunk Driver, Young Male Driver (~29), Afternoon</label></p> 
+                 <input type="checkbox"  id="cluster7"> <label> Cluster 7: </label> <p>Clear Weather, Drunk Driver,  Male Victim(~35), Late Night, Weekend</p></input> 
+                 <input type="checkbox"  id="cluster8"> <label> Cluster 8: </label> <p>Rainy/Snowy Weather, Non-Drunk Driver, Afternoon, Avg Age 48</p></input> <br>
+                 <button class="btn btn-default btn-lg dropdown-toggle" type="button" onclick="clusterFilter()"> Plot Segments</button> 
               </div>
           </div>
                 </div> 
         </div>
             <div class="panel">
-               <a class="accordion" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+               <a onclick="mapmode('rec')" class="accordion" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
                 <div align="center" class="accbutton"> 
                 <h3>Recommendations
               </h3>
