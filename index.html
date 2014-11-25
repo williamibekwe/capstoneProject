@@ -45,16 +45,27 @@
       
           <div id="collapseTwo" class="accordion-body collapse">
           <div class="accordion-inner">
+            <div id="wrapper">
+              <button id="plotbutton" class="btn btn-default btn-lg dropdown-toggle" type="button" onclick="clusterFilter()">Re-Plot Segments</button> 
+            </div>
+
              <div id="cluster"> 
-                <input type="checkbox"  id="cluster1" checked> <label> Cluster 1: </label> <p>Clear Weather, Female Drivers, Afternoon, Average Age of 45, Weekdays</p></input>
-                <input type="checkbox"  id="cluster2"> <label> Cluster 2: </label> <p>Urban Setting, Pedestrians Involvment, Single Car Accidents, Non-Drunk Driver, Evening</p></input>       
-                <input type="checkbox"  id="cluster3"> <label> Cluster 3: </label> <p>Highway Setting, Clear Weather, Non-Drunk Driver, Morning Commute</p></input> 
-                <input type="checkbox"  id="cluster4"> <label> Cluster 4: </label> <p>Rainy/Snowy Weather, Drunk Driver, Late at Night (After 10pm), Average Age 36</p></input> 
-                <input type="checkbox"  id="cluster5"> <label> Cluster 5: </label> <p>Highway Setting, Clear weather, Non-Drunk Driver, Older Males (60+), Afternoon </p></input> 
-                 <input type="checkbox"  id="cluster6"> <label> Cluster 6: </label> <p>Clear Waeather , Non-Drunk Driver, Young Male Driver (~29), Afternoon</label></p> 
-                 <input type="checkbox"  id="cluster7"> <label> Cluster 7: </label> <p>Clear Weather, Drunk Driver,  Male Victim(~35), Late Night, Weekend</p></input> 
-                 <input type="checkbox"  id="cluster8"> <label> Cluster 8: </label> <p>Rainy/Snowy Weather, Non-Drunk Driver, Afternoon, Avg Age 48</p></input> <br>
-                 <button class="btn btn-default btn-lg dropdown-toggle" type="button" onclick="clusterFilter()"> Plot Segments</button> 
+                <input type="checkbox"  id="cluster1" checked> <label> Cluster 1: </label><span id="cluster1" class="key"></span>
+                  <p>Cluster 1 involves female drivers about 45 years old, driving weekday afternoons in clear weather.</p></input>
+                <input type="checkbox"  id="cluster2"> <label> Cluster 2: </label><span id="cluster2" class="key"></span> 
+                  <p>Cluster 2 accidents involve a single-car and pedestrians in the evening in an urban setting. The driver is typically non-drunk.</p></input>
+                <input type="checkbox"  id="cluster3"> <label> Cluster 3: </label><span id="cluster3" class="key"></span>  
+                  <p>Cluster 3 accidents occur during the morning commute with non-drunk drivers and clear weather on large highways.</p></input> 
+                <input type="checkbox"  id="cluster4"> <label> Cluster 4: </label><span id="cluster4" class="key"></span>  
+                  <p>Cluster 4 involves drunk drivers about 36 years old driving late at night in severe weather.</p></input> 
+                <input type="checkbox"  id="cluster5"> <label> Cluster 5: </label><span id="cluster5" class="key"></span>  
+                  <p>Cluster 5 drivers are older males (60+ years old) driving in clear weather in the afternoon.</p></input> 
+                 <input type="checkbox"  id="cluster6"> <label> Cluster 6: </label><span id="cluster6" class="key"></span>  
+                  <p>Cluster 6 involves young, non-drunk, male drivers (~29 years old) in the afternoon.</label></p> 
+                 <input type="checkbox"  id="cluster7"> <label> Cluster 7: </label><span id="cluster7" class="key"></span>  
+                  <p>Cluster 7 involves young, drunk, male drivers driving late at night on the weekend in clear weather.</p></input> 
+                 <input type="checkbox"  id="cluster8"> <label> Cluster 8: </label><span id="cluster8" class="key"></span>  
+                  <p>Cluster 8 involves older (around 48 years old), non-drunk drivers battling severe weather in the afternoon.</p></input> <br>
               </div>
           </div>
                 </div> 
@@ -62,7 +73,7 @@
             <div class="panel">
                <a onclick="mapmode('rec')" class="accordion" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
                 <div align="center" class="accbutton"> 
-                <h3>Recommendations
+                <h3>Analytical Insights
               </h3>
               </div>
                 </a>
@@ -78,6 +89,9 @@
   <div id="right">
       <div id="search"></div>
       <div id="map"></div>
-    </div> 
+    </div>
+    <div id="load">
+      <img id="gif" src="./styles/images/load.gif">
+    </div>  
   </body>
 </html>

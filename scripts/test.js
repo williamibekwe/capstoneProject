@@ -314,7 +314,7 @@ require([
     map.addLayer(zipRecomentdationLayer);
     map.addLayer(zipFeatureLayer);
     map.addLayer(zipFeatureLayerCapita);
-   accidentsFeatureLayer.setRenderer(renderer1);
+    accidentsFeatureLayer.setRenderer(renderer1);
     
 
 
@@ -371,6 +371,13 @@ require([
      //   console.log(zipFeatureLayer);
         checkLevels();
         
+    });
+
+    map.on("update-start", function(){ 
+        document.getElementById('load').style.display = 'initial';
+    });
+    map.on("update-end", function(){ 
+        document.getElementById('load').style.display = 'none';
     });
 
 
