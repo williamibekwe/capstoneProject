@@ -20,6 +20,7 @@ var mapmode = function(mode){
         countyRecomentdationLayer.setVisibility(false);
         gi = false; 
         hm = true; 
+
     } else if (mode == "gi") { 
         stateFeatureLayer.setVisibility(true);
         zipFeatureLayer.setVisibility(true);
@@ -38,6 +39,7 @@ var mapmode = function(mode){
         countyRecomentdationLayer.setVisibility(true);
         hm = false;
         gi = false;
+
     }
     checkLevels();
 };
@@ -55,6 +57,7 @@ var mapversion = function(mode){
 
 var checkLevels = function(){ 
 if(gi){
+        map.setBasemap("gray");
     if (infomode){
         countyFeatureLayer.setVisibility(true); 
         countyFeatureLayerCapita.setVisibility(false); 
@@ -77,6 +80,7 @@ if(gi){
         stateFeatureLayer.setVisibility(false);
     }
 } else if(hm){ 
+            map.setBasemap("streets");
 
     countyFeatureLayer.setVisibility(false); 
     countyFeatureLayerCapita.setVisibility(false); 
@@ -87,7 +91,7 @@ if(gi){
     countyRecomentdationLayer.setVisibility(false);
    
 } else {
-
+        map.setBasemap("gray");
     countyFeatureLayer.setVisibility(false); 
     countyFeatureLayerCapita.setVisibility(false); 
     zipFeatureLayer.setVisibility(false); 
@@ -211,8 +215,7 @@ require([
     });
 
 
-    var countyjson = {title:"---",content:        "<tr>County: <td>${county}</td></tr>" + 
-                                             "<br><tr>State Name: <td>${NAME_1}</td></tr> "+ 
+    var countyjson = {title:"${county} County",content: "<tr>State Name: <td>${NAME_1}</td></tr> "+ 
                                              "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
                                              "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
@@ -245,19 +248,19 @@ require([
 
     var zipInfoTemplate = new InfoTemplate(zipjson);
     var zipInfoTemplateCapita = new InfoTemplate(zipjson);
-    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/4",{
+    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/5",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplate
     });
-    zipFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
+    zipFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/4",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplateCapita
     });
 
     var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/8",{
+    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/6",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: accidentsInfoTemplate
@@ -281,7 +284,7 @@ require([
                                              "<br><tr>Risk Score: <td>${area}</td></tr>"};
 
     var countyRecomentdationInfoTemplate =new InfoTemplate(countyrec);
-    countyRecomentdationLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/6",{
+    countyRecomentdationLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: countyRecomentdationInfoTemplate
