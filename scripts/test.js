@@ -39,7 +39,6 @@ var mapmode = function(mode){
         countyRecomentdationLayer.setVisibility(true);
         hm = false;
         gi = false;
-
     }
     checkLevels();
 };
@@ -73,15 +72,13 @@ if(gi){
         zipRecomentdationLayer.setVisibility(false);
         countyRecomentdationLayer.setVisibility(false);
     }
-
     if(map.getLevel() < 10 ){
         stateFeatureLayer.setVisibility(true);
     } else { 
         stateFeatureLayer.setVisibility(false);
     }
 } else if(hm){ 
-            map.setBasemap("streets");
-
+    map.setBasemap("streets");
     countyFeatureLayer.setVisibility(false); 
     countyFeatureLayerCapita.setVisibility(false); 
     zipFeatureLayer.setVisibility(false); 
@@ -281,7 +278,7 @@ require([
     var countyrec = {title:"${ZIPCODE}",content:"<tr>State: <td>${STATE}</td></tr> "+ 
                                              "<br><tr>Cluster Recomendation(s): <td>${top_cluse} and ${second_clu}</td></tr>"+ 
                                              "<br><tr>SVM Recomendation(s): <td>${rec1} ${rec2} ${rec3} </td></tr>"+ 
-                                             "<br><tr>Risk Score: <td>${area}</td></tr>"};
+                                             "<br><tr>Risk Score: <td>${risk}</td></tr>"};
 
     var countyRecomentdationInfoTemplate =new InfoTemplate(countyrec);
     countyRecomentdationLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
