@@ -313,7 +313,7 @@ require([
 
 
 
- var attr = {title:"",content: "<tr>Number of Yelp Biz: <td>${F__of_Yelp}</td></tr> " + 
+ var attr = {title:" ",content: "<tr>Number of Yelp Biz: <td>${F__of_Yelp}</td></tr> " + 
                                              "<br><tr>Roadway: <td>${Roadway_}</td></tr> " + 
                                              "<br><tr>Number of Pedestrians: <td>${F__of_Pede}</td></tr>" + 
                                              "<br><tr>Number of Vehicles: <td>${F__of_Vehi}</td></tr>" + 
