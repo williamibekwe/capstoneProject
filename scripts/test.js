@@ -263,13 +263,18 @@ require([
     });
 
 
-    var countyjson = {title:"${county} County",content: "<tr>State Name: <td>${NAME_1}</td></tr> "+ 
-                                             "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> "+ 
-                                             "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>"+ 
+    var countyjson = {title:"${NAME_2} County",content: "<tr>State Name: <td>${NAME_1}</td></tr> " + 
+                                             "<br><tr>Number of Accidents: <td>${num_accide}</td></tr> " + 
+                                             "<br><tr>Number of Fatalities: <td>${num_fatals}</td></tr>" + 
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                              "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
                                              "<br><tr>Population: <td>${population}</td></tr>" + 
-                                             "<br><tr>Square Mile Area: <td>${area}</td></tr>" };
+                                             "<br><tr>Square Mile Area: <td>${area} Sq. Mi.</td></tr>"  + 
+                                             "<br>"  + 
+                                             "<br><tr><b>General Recomendation(s):</b> <br><td>${General_Re} ${General__1} ${General__2} ${General__3}</td></tr>"  + 
+                                             "<br><br><b><tr>Policy Recomendation(s):</b> <br><td>${Policy_Rec} ${Policy_R_1} ${Policy_R_2} ${Policy_R_3} ${Recommenda} ${Recommen_1} ${Recommen_2}</td></tr><br><br>"  
+
+                                         };
 
     var countyInfoTemplate = new InfoTemplate(countyjson);
      countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
@@ -296,26 +301,26 @@ require([
 
     var zipInfoTemplate = new InfoTemplate(zipjson);
     var zipInfoTemplateCapita = new InfoTemplate(zipjson);
-    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/5",{
+    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/4",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplate
     });
-    zipFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/4",{
+    zipFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplateCapita
     });
 
     var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
-    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/6",{
+    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/5",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: accidentsInfoTemplate
     });
-    accidentsFeatureLayer.setDefinitionExpression("cluster = 1");
+    accidentsFeatureLayer.setDefinitionExpression("new_cluste = 1");
 
-    renderer1 = new ClassBreaksRenderer(accidentsFeatureLayer, "cluster");
+    renderer1 = new ClassBreaksRenderer(accidentsFeatureLayer, "new_cluste");
     renderer1.addBreak(1, 1, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([204, 0, 0, 0.3] )));
     renderer1.addBreak(2, 2, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([204, 204, 0, 0.3] )));
     renderer1.addBreak(3, 3, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 255, 0, 0.3] )));
