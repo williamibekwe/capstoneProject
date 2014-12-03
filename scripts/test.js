@@ -106,30 +106,30 @@ if(gi){
 var clusterFilter = function(){ 
     var queryString = "";
      if(document.getElementById('cluster1').checked){
-        queryString = "cluster = 1 ";
+        queryString = "new_cluste = 1 ";
      } else {
-        queryString = "cluster = 0 ";
+        queryString = "new_cluste = 0 ";
      }
      if(document.getElementById('cluster2').checked){
-        queryString += "OR cluster = 2 ";
+        queryString += "OR new_cluste = 2 ";
      }
      if(document.getElementById('cluster3').checked){
-        queryString += "OR cluster = 3 ";
+        queryString += "OR new_cluste = 3 ";
      }
      if(document.getElementById('cluster4').checked){
-        queryString += "OR cluster = 4 ";
+        queryString += "OR new_cluste = 4 ";
      }
      if(document.getElementById('cluster5').checked){
-        queryString += "OR cluster = 5 ";
+        queryString += "OR new_cluste = 5 ";
      }
      if(document.getElementById('cluster6').checked){
-        queryString += "OR cluster = 6 ";
+        queryString += "OR new_cluste = 6 ";
      }
      if(document.getElementById('cluster7').checked){
-        queryString += "OR cluster = 7 ";
+        queryString += "OR new_cluste = 7 ";
      }
      if(document.getElementById('cluster8').checked){    
-        queryString += "OR cluster = 8";
+        queryString += "OR new_cluste = 8";
     }
     accidentsFeatureLayer.setDefinitionExpression(queryString);
 };
@@ -271,8 +271,8 @@ require([
                                              "<br><tr>Population: <td>${population}</td></tr>" + 
                                              "<br><tr>Square Mile Area: <td>${area} Sq. Mi.</td></tr>"  + 
                                              "<br>"  + 
-                                             "<br><tr><b>General Recomendation(s):</b> <br><td>${General_Re} ${General__1} ${General__2} ${General__3}</td></tr>"  + 
-                                             "<br><br><b><tr>Policy Recomendation(s):</b> <br><td>${Policy_Rec} ${Policy_R_1} ${Policy_R_2} ${Policy_R_3} ${Recommenda} ${Recommen_1} ${Recommen_2}</td></tr><br><br>"  
+                                             "<br><br><b><tr>Policy Recomendation(s):</b> <br><td>${Policy_Rec} ${Policy_R_1} ${Policy_R_2} ${Policy_R_3} ${Recommenda} ${Recommen_1} ${Recommen_2}</td></tr>" +
+                                             "<br><tr><b>General Recomendation(s):</b> <br><td>${General_Re} ${General__1} ${General__2} ${General__3}</td></tr><br><br>"  
 
                                          };
 
