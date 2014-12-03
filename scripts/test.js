@@ -269,10 +269,9 @@ require([
                                              "<br><tr>Number of Deaths in Vehicles: <td>${num_fata_1}</td></tr>" + 
                                              "<br><tr>Number of Pedestrian Deaths: <td>${num_fata_2}</td></tr>" + 
                                              "<br><tr>Population: <td>${population}</td></tr>" + 
-                                             "<br><tr>Square Mile Area: <td>${area} Sq. Mi.</td></tr>"  + 
-                                             "<br>"  + 
+                                             "<br><tr>Area: <td>${area} Square Miles</td></tr>"  + 
                                              "<br><br><b><tr>Policy Recomendation(s):</b> <br><td>${Policy_Rec} ${Policy_R_1} ${Policy_R_2} ${Policy_R_3} ${Recommenda} ${Recommen_1} ${Recommen_2}</td></tr>" +
-                                             "<br><tr><b>General Recomendation(s):</b> <br><td>${General_Re} ${General__1} ${General__2} ${General__3}</td></tr><br><br>"  
+                                             "<br><br><tr><b>General Recomendation(s):</b> <br><td>${General_Re} ${General__1} ${General__2} ${General__3}</td></tr><br><br>"  
 
                                          };
 
