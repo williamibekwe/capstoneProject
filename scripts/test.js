@@ -257,7 +257,7 @@ require([
 
     //state renderer
     
-     stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/0",{
+     stateFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject2/FeatureServer/0",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"]
     });
@@ -276,14 +276,14 @@ require([
                                          };
 
     var countyInfoTemplate = new InfoTemplate(countyjson);
-     countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/2",{
+     countyFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject2/FeatureServer/2",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: countyInfoTemplate
     }); 
 
     var countyInfoTemplateCapita = new InfoTemplate(countyjson);
-    countyFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/1",{
+    countyFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject2/FeatureServer/1",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: countyInfoTemplateCapita
@@ -300,12 +300,12 @@ require([
 
     var zipInfoTemplate = new InfoTemplate(zipjson);
     var zipInfoTemplateCapita = new InfoTemplate(zipjson);
-    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/4",{
+    zipFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject2/FeatureServer/4",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplate
     });
-    zipFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
+    zipFeatureLayerCapita = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject2/FeatureServer/3",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: zipInfoTemplateCapita
@@ -320,6 +320,7 @@ require([
                                              "<br><tr>Weather: <td>${Weather_}</td></tr>" + 
                                              "<br><tr>Number of Drunk Drivers: <td>${F__of_Drun}</td></tr>" + 
                                              "<br><tr>Driver's Age: <td>${Driver_Age}</td></tr>"  + 
+                                             "<br><tr>Driver's Sex: <td>${Driver_Sex}</td></tr>"  + 
                                              "<br><tr>Hour of the Day: <td>${Hour_of_Da}</td></tr>"  + 
                                              "<br><tr>Day of the Week: <td>${Day_Of_Wee}</td></tr>" +
                                              "<br><tr>Cluster: <td>${new_cluste}</td></tr>" 
@@ -331,7 +332,7 @@ require([
 
 
     var accidentsInfoTemplate = new InfoTemplate(attr);
-    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/5",{
+    accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject2/FeatureServer/5",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
         infoTemplate: accidentsInfoTemplate
