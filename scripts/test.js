@@ -353,8 +353,8 @@ require([
 
 
 
-   // map.addLayer(accidentsFeatureLayer);
-   // accidentsFeatureLayer.setVisibility(false);
+   map.addLayer(accidentsFeatureLayer);
+    accidentsFeatureLayer.setVisibility(false);
    //stateFeatureLayer.setRenderer(rend);
    // map.addLayer(countyRecomentdationLayer);
     map.addLayer(countyFeatureLayer);
