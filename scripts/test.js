@@ -311,7 +311,26 @@ require([
         infoTemplate: zipInfoTemplateCapita
     });
 
-    var accidentsInfoTemplate = new InfoTemplate("${NAME}", "${*}");
+
+
+ var attr = {title:"",content: "<tr>Number of Yelp Biz: <td>${F__of_Yelp}</td></tr> " + 
+                                             "<br><tr>Roadway: <td>${Roadway_}</td></tr> " + 
+                                             "<br><tr>Number of Pedestrians: <td>${F__of_Pede}</td></tr>" + 
+                                             "<br><tr>Number of Vehicles: <td>${F__of_Vehi}</td></tr>" + 
+                                             "<br><tr>Weather: <td>${Weather_}</td></tr>" + 
+                                             "<br><tr>Number of Drunk Drivers: <td>${F__of_Drun}</td></tr>" + 
+                                             "<br><tr>Driver's Age: <td>${Driver_Age}</td></tr>"  + 
+                                             "<br><tr>Hour of the Day: <td>${Hour_of_Da}</td></tr>"  + 
+                                             "<br><tr>Day of the Week: <td>${Day_Of_Wee}</td></tr>" +
+                                             "<br><tr>Cluster: <td>${new_cluste}</td></tr>" 
+                                         };
+
+
+
+
+
+
+    var accidentsInfoTemplate = new InfoTemplate(attr);
     accidentsFeatureLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/5",{
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["*"],
