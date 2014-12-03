@@ -10,14 +10,15 @@ var zipRecomentdationLayer;
 var gi = true;
 var infomode = true; 
 var renderer1;
+var fun; 
 
 var mapmode = function(mode){
     if( mode == "hm"){
         zipFeatureLayer.setVisibility(false);
         countyFeatureLayer.setVisibility(false);
         accidentsFeatureLayer.setVisibility(true);
-        zipRecomentdationLayer.setVisibility(false);
-        countyRecomentdationLayer.setVisibility(false);
+        //zipRecomentdationLayer.setVisibility(false);
+        //countyRecomentdationLayer.setVisibility(false);
         gi = false; 
         hm = true; 
 
@@ -26,8 +27,8 @@ var mapmode = function(mode){
         zipFeatureLayer.setVisibility(true);
         countyFeatureLayer.setVisibility(true);
         accidentsFeatureLayer.setVisibility(false);
-        zipRecomentdationLayer.setVisibility(false);
-        countyRecomentdationLayer.setVisibility(false);
+        //zipRecomentdationLayer.setVisibility(false);
+        //countyRecomentdationLayer.setVisibility(false);
         hm = false;
         gi = true;
     } else {
@@ -35,8 +36,8 @@ var mapmode = function(mode){
         zipFeatureLayer.setVisibility(false);
         countyFeatureLayer.setVisibility(false);
         accidentsFeatureLayer.setVisibility(false);
-        zipRecomentdationLayer.setVisibility(true);
-        countyRecomentdationLayer.setVisibility(true);
+        //zipRecomentdationLayer.setVisibility(true);
+        //countyRecomentdationLayer.setVisibility(true);
         hm = false;
         gi = false;
     }
@@ -62,15 +63,15 @@ if(gi){
         countyFeatureLayerCapita.setVisibility(false); 
         zipFeatureLayer.setVisibility(true); 
         zipFeatureLayerCapita.setVisibility(false); 
-        zipRecomentdationLayer.setVisibility(false);
-        countyRecomentdationLayer.setVisibility(false);
+        //zipRecomentdationLayer.setVisibility(false);
+        //countyRecomentdationLayer.setVisibility(false);
     } else { 
         countyFeatureLayer.setVisibility(false); 
         countyFeatureLayerCapita.setVisibility(true); 
         zipFeatureLayer.setVisibility(false); 
         zipFeatureLayerCapita.setVisibility(true); 
-        zipRecomentdationLayer.setVisibility(false);
-        countyRecomentdationLayer.setVisibility(false);
+        //zipRecomentdationLayer.setVisibility(false);
+        //countyRecomentdationLayer.setVisibility(false);
     }
     if(map.getLevel() < 10 ){
         stateFeatureLayer.setVisibility(true);
@@ -84,18 +85,18 @@ if(gi){
     zipFeatureLayer.setVisibility(false); 
     zipFeatureLayerCapita.setVisibility(false); 
     accidentsFeatureLayer.setVisibility(true);
-    zipRecomentdationLayer.setVisibility(false);
-    countyRecomentdationLayer.setVisibility(false);
+    //zipRecomentdationLayer.setVisibility(false);
+    //countyRecomentdationLayer.setVisibility(false);
    
 } else {
-        map.setBasemap("gray");
+    map.setBasemap("gray");
     countyFeatureLayer.setVisibility(false); 
     countyFeatureLayerCapita.setVisibility(false); 
     zipFeatureLayer.setVisibility(false); 
     zipFeatureLayerCapita.setVisibility(false); 
     accidentsFeatureLayer.setVisibility(false);
-    zipRecomentdationLayer.setVisibility(true);
-    countyRecomentdationLayer.setVisibility(true);
+    //zipRecomentdationLayer.setVisibility(true);
+    //countyRecomentdationLayer.setVisibility(true);
 }
 
 };
@@ -132,6 +133,56 @@ var clusterFilter = function(){
     }
     accidentsFeatureLayer.setDefinitionExpression(queryString);
 };
+
+
+var fun = function(type){ 
+        if(type == 1){
+            return "speeding accidents";
+        } else if(type == 2){
+            return "rush hour commuters";
+        }else if(type == 3){
+            return "carpooling";
+        }else if(type == 4){
+            return "bicyling";
+        }else if(type == 5){
+            return "spanish speakers";
+        }else if(type == 6){
+            return "accidents on ice";
+        }else if(type == 7){
+            return "public transit";
+        }else if(type == 8){
+            return "accidents on gravel";
+        }else if(type == 9){
+            return "motorcycle riders";
+        }else if(type == 10){
+            return "accidents driving off the road";
+        }else if(type == 11){
+            return "accidents driving drunk";
+        }else if(type == 12){
+            return "accidents not using seatbelt";
+        }else if(type == 13){
+            return "manufacturing jobs";
+        }else if(type == 14){
+            return "bicyclists killed";
+        }else if(type == 15){
+            return "pedestrians killed";
+        }else if(type == 16){
+            return "motorcyclists killed";
+        }else if(type == "17"){
+            return "Production and Transportation Jobs";
+        }else if(type == 18){
+            return "highway deaths";
+        }else if(type == 19){
+            return "accidents on unlit roads";
+        }else if(type == 20){
+            return "construction jobs";
+        }else{
+            return type;
+
+        }
+        
+    };
+
 
 
 require([
@@ -275,43 +326,43 @@ require([
     renderer1.addBreak(8, 8, new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 13, null, new Color([0, 204, 204, 0.3] )))
 
 
-    var countyrec = {title:"${ZIPCODE}",content:"<tr>State: <td>${STATE}</td></tr> "+ 
-                                             "<br><tr>Cluster Recomendation(s): <td>${top_cluse} and ${second_clu}</td></tr>"+ 
-                                             "<br><tr>SVM Recomendation(s): <td>${rec1} ${rec2} ${rec3} </td></tr>"+ 
-                                             "<br><tr>Risk Score: <td>${risk}</td></tr>"};
+    // var countyrec = {title:"${ZIPCODE}",content:"<tr>State: <td>${STATE}</td></tr> "+ 
+    //                                          "<br><tr>Cluster Recomendation(s): <td>${top_cluse} and ${second_clu}</td></tr>"+ 
+    //                                          "<br><tr>SVM Recomendation(s): <td> " + fun("${rec1}") + " ${rec2} ${rec3} </td></tr>"+ 
+    //                                          "<br><tr>Risk Score: <td>${risk}</td></tr>"};
 
-    var countyRecomentdationInfoTemplate =new InfoTemplate(countyrec);
-    countyRecomentdationLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
-        mode: FeatureLayer.MODE_ONDEMAND,
-        outFields: ["*"],
-        infoTemplate: countyRecomentdationInfoTemplate
-    });
-
-
-    var ziprec = {title:"${ZIPCODE}",content:"<tr>State:<td>${STATE}</td></tr> "+ 
-                                             "<br><tr>Cluster Recomendation(s): <td>${top_cluse} and ${second_clu}</td></tr>"+ 
-                                             "<br><tr>SVM Recomendation(s): <td>${rec1} ${rec2} ${rec3} </td></tr>"+ 
-                                             "<br><tr>Risk Score:<td>${risk}</td></tr>"};
-
-    var zipRecomentdationInfoTemplate =new InfoTemplate(ziprec);
-    zipRecomentdationLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/7",{
-        mode: FeatureLayer.MODE_ONDEMAND,
-        outFields: ["*"],
-        infoTemplate: zipRecomentdationInfoTemplate
-    });
+    // var countyRecomentdationInfoTemplate =new InfoTemplate(countyrec);
+    // countyRecomentdationLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/3",{
+    //     mode: FeatureLayer.MODE_ONDEMAND,
+    //     outFields: ["*"],
+    //     infoTemplate: countyRecomentdationInfoTemplate
+    // });
 
 
+    // var ziprec = {title:"${ZIPCODE}",content:"<tr>State:<td>${STATE}</td></tr> "+ 
+    //                                          "<br><tr>Cluster Recomendation(s): <td>${top_cluse} and ${second_clu}</td></tr>"+ 
+    //                                          "<br><tr>SVM Recomendation(s): <td>${rec1} ${rec2} ${rec3} </td></tr>"+ 
+    //                                          "<br><tr>Risk Score:<td>${risk}</td></tr>"};
 
-    map.addLayer(accidentsFeatureLayer);
-    accidentsFeatureLayer.setVisibility(false);
+    // var zipRecomentdationInfoTemplate =new InfoTemplate(ziprec);
+    // zipRecomentdationLayer = new FeatureLayer("http://services2.arcgis.com/OtgATC5c4o2eFVW8/arcgis/rest/services/capstoneProject/FeatureServer/7",{
+    //     mode: FeatureLayer.MODE_ONDEMAND,
+    //     outFields: ["*"],
+    //     infoTemplate: zipRecomentdationInfoTemplate
+    // });
+
+
+
+   // map.addLayer(accidentsFeatureLayer);
+   // accidentsFeatureLayer.setVisibility(false);
    //stateFeatureLayer.setRenderer(rend);
-    map.addLayer(countyRecomentdationLayer);
+   // map.addLayer(countyRecomentdationLayer);
     map.addLayer(countyFeatureLayer);
     map.addLayer(countyFeatureLayerCapita);
     map.addLayer(stateFeatureLayer); 
     //countyFeatureLayer.setRenderer(rend);
     //zipFeatureLayer.setRenderer(rend);
-    map.addLayer(zipRecomentdationLayer);
+    //map.addLayer(zipRecomentdationLayer);
     map.addLayer(zipFeatureLayer);
     map.addLayer(zipFeatureLayerCapita);
     accidentsFeatureLayer.setRenderer(renderer1);
@@ -379,6 +430,7 @@ require([
     map.on("update-end", function(){ 
         document.getElementById('load').style.display = 'none';
     });
+
 
 
 });
